@@ -1,0 +1,152 @@
+
+Topics:
+
+  Mongoose:
+
+    what is mongoose?
+      schema based object modelling tool for connecting & doing CRUD operation on DB
+
+    schema
+
+    DB Connection:
+      URI string to identify the database service
+
+  local BE to local DB - Done
+
+    Local NodeJS <-> mongodb://localhost:27017
+
+      1. deploy the codes for nodejs
+      
+    
+    1. Cloud Atlas:
+
+      Signing Up & Creating Cloud DB
+
+      Connecting with Cloud Atlas DB
+    
+    DB Create: 
+      1. Sign up on https://cloud.mongodb.com/
+      2. Cluster Creation
+      3. Database Creation ( Select M0 Free Version & Create )
+      4. Username with Password, Note those details somewhere safe
+      5. Copy the Connect URL and replace with the local url
+
+          mongodb+srv://<username>:<password>@cluster0.ruapl1v.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+
+          mongodb+srv://sanjaysaravanan1997:8JMtgqJdaf7R0WLm@cluster0.ruapl1v.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+    
+      6. Add 0.0.0.0/0 in the network - this open up the db for anybody with username/password to connect to it
+  
+    local NodeJS <->  CloudDB ( mongodb://<atlas-db-cluster> ) - Done
+
+
+    Cloud NodeJS( Render ) <-> CloudDB ( mongodb://<atlas-db-cluster ) - Done
+      1. Credentials & DB Details are revealed in the codebase in github
+
+      2. Prevent the credentials from being revealed in the codebase
+  
+  2. dotenv:
+      storing sensitive information as a .env file, re-deploy nodejs with environment variables
+
+      .env should be added in the .gitignore file
+
+      load the .env file into the server environment
+        using the package called dotenv
+       
+      Cloud BE to Cloud DB - Done
+
+  3. gitignore:
+      files to be ignored by the source codes
+
+      ignore the .env file, which should be pushed to the codebase in github
+  
+
+
+  3.1 Push the codes and check the status of the render server 
+  
+    Cloud Backend  <-> Cloud DB - Done ( Without exposing any secrets )
+  
+  Mongoose:
+
+    what is mongoose?
+      schema based object modelling tool for connecting & doing CRUD operation on DB
+
+    schema
+
+    DB Connection:
+      URI string to identify the database service
+  
+  4. Connecting a simple FrontEnd with Backend Server:
+
+      Local FE:
+        / --> Link to Goto /students or /teachers
+        /students -> list all the students, provide an option to create new student
+        /teachers -> list all the /teachers, provide an option to create new teacher
+
+      local (FE <-> BE <-> DB) - Done
+        all the local interconnections are working properly fine
+
+      local FE <-> local BE <-> Cloud DB - Done
+
+        cors error -> Cross origin resource Sharing
+          Occurs when different origins try to connect/communicate
+
+          localhost:5173 FE conneting to localhost:8000 BE
+
+          So, we need to make the BE server CORS compatible
+          Install and Configure npm cors
+
+            In BackEnd server, we need to,
+              1. npm install cors
+              2. Use as middleware in server like.
+
+                Eg: server.use(express.json());
+                    server.use(cors());
+
+  5. Dployment ( Both FrontEnd & BackEnd )
+
+     ** FE do not require dotenv package **
+      local FE to Cloud BE <-> Cloud DB
+
+      .env --> local FE
+          VITE_SOME_KEY=<value>
+
+      Acessing the env in FE js,
+        import.meta.env.VITE_SOME_KEY
+
+      env variables --> netlify variables
+
+      Cloud FE <-> Cloud BE <-> Coud DB - Done
+
+      FE URL -> https://resonant-eclair-895f9f.netlify.app
+      BE URL -> https://tamil-combined-node-project.onrender.com
+
+  Note: *** Do Not Push node_modules or .env to github ***
+
+Task:
+
+  Day 36:
+
+    Deploy all the below,
+
+      Simple FE
+      Simple BE
+      Simple Coud DB
+
+      All the above items should be able to work properly in cloud like how we discussed in the session,
+
+      Cloud FE <-> Cloud BE <-> Cloud DB
+
+      Approach Step-By-Step:
+
+        local:
+          1. BE <-> DB
+          2. FE <-> BE <-> DB
+          3. Use .env file in local for sensitive information
+
+        Cloud:
+          1. BE <-> DB
+          2. FE <-> BE <-> DB
+          3. load proper environment variables on cloud instances
+
+      Note: Please start using AI Tools chat-gpt & others for You development needs
